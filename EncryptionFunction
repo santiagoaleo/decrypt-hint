@@ -1,0 +1,18 @@
+// Hmmm...what if yoy reverse engineered this...
+
+transition issue(req: Request, message: [field; 9], randomizer: field) -> Challenge {
+        // Compute the hash of the message.
+        let hash: field = BHP256::hash_to_field(message);
+        // Encrypt the message with the randomizers.
+        let e_0: field = message[0u8] + randomizer;
+        let e_1: field = message[1u8] + e_0;
+        let e_2: field = message[2u8] + e_1;
+        let e_3: field = message[3u8] + e_2;
+        let e_4: field = message[4u8] + e_3;
+        let e_5: field = message[5u8] + e_4;
+        let e_6: field = message[6u8] + e_5;
+        let e_7: field = message[7u8] + e_6;
+        let e_8: field = message[8u8] + e_7;
+        let encrypted_message: [field; 9] = [
+            e_0, e_1, e_2, e_3, e_4, e_5, e_6, e_7, e_8, 
+        ];
